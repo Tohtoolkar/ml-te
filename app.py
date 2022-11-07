@@ -99,7 +99,7 @@ def cal_zt():
         set_of_zt.append(zt)
     
     return set_of_zt, temperatures, material,sinter_temp
-
+#asd
 @app.route("/plot_zt", methods=['POST'])
 def plot_zt():
     zt_list = []
