@@ -13,8 +13,6 @@ import seaborn as sb
 from collections import OrderedDict
 from cbfv.composition import generate_features
 
-from sklearn.preprocessing import StandardScaler
-from sklearn.preprocessing import normalize
 
 #import io
 #import base64
