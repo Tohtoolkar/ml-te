@@ -18,3 +18,4 @@ virtualenv==20.16.6
 yarg==0.1.9
 Flask==2.2.2
 tqdm==4.64.1
+pandas==1.5.1
