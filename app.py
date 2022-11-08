@@ -20,7 +20,7 @@ from sklearn.preprocessing import normalize
 #import base64
 
 app = Flask(__name__)
-model = pickle.load(open('model-TE2.pkl', 'rb'))
+model = pickle.load(open('model-TE3.pkl', 'rb'))
 
 
 def merge_data(formula, sin_temp, measure_temp):
