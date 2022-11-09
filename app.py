@@ -167,11 +167,13 @@ def predict():
         pic2 =plot_zt2()
         pic = "The picture was shown below"
         error =""
+        scr = "data:image/png;base64, {{ image2 }}"
         
     except:
         error = "You put the wrong fomula form, try again!"
         pic2 = ""
         pic = ""
+        scr = ""
     
     formula = str(request.form['formula'])
     sin_temp = int(request.form['sin_temp'])
@@ -182,7 +184,7 @@ def predict():
     #output = prediction[0]
     #Flask_Logo = os.path.join(app.config['UPLOAD_FOLDER'], f'prediction_{formula}_{sin_temp}.jpg')
     
-    return render_template('index.html', pic=pic, error=error, image2=pic2)
+    return render_template('index.html', pic=pic, error=error, image2=pic2, src=scr)
 
 
 if __name__ == "__main__":
