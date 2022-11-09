@@ -169,7 +169,7 @@ def predict():
         error =""
     except:
         error = "You put the wrong fomula form, try again!"
-        pic = ""
+        pic2 = ""
     
     formula = str(request.form['formula'])
     sin_temp = int(request.form['sin_temp'])
