@@ -1,21 +1,33 @@
 from flask import Flask, render_template, request
+#from flask_uploads import UploadSet, IMAGES, confiure_uploads
+#from flask_wrtf import FlaskForm
+#from flasl_wrf.file import FileField, FileRequired, FileAllowed
+#from wtforms import SubmitField
+
+#import io
+from flask import Response
+
+#from flask import Flask
+#mport numpy as np
+
 import pickle
-
-
+import urllib3
 import os
 import numpy as np
 import pandas as pd
 import matplotlib
+
 matplotlib.use('Agg')
-import seaborn as sb
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
+
 
 
 from collections import OrderedDict
 from cbfv.composition import generate_features
 
-
-#import io
-#import base64
+import io
+import base64
 
 app = Flask(__name__)
 model = pickle.load(open('model-TE3.pkl', 'rb'))
@@ -63,8 +75,22 @@ def merge_data(formula, sin_temp, measure_temp):
     
     return data_and_selectFeatures
 IMG_FOLDER = os.path.join('static', 'IMG')
-app.config['UPLOAD_FOLDER'] = IMG_FOLDER    
+app.config['UPLOAD_FOLDER'] = IMG_FOLDER 
+""" 
+app.config['SECRET_KEY'] = 'asdfgklj'
 
+photos = UploadSet('photos', IMAGES)
+
+class UploadForm(FlaskForm):
+    photo = FileField(
+        validators=[
+            FileAllowed(photos, 'Only images are allowed'),
+            FileRequired('File field should not be empty')
+            
+        ]
+    )
+    submit = SubmitField('Upload')
+ """
 @app.route("/")
 @app.route('/index')
 def hello():
@@ -98,6 +124,20 @@ def cal_zt():
     
     return set_of_zt, temperatures, material,sinter_temp
 #asd
+
+def display_zt():
+    zt_list = []
+    set_of_zt, temperatures, material,sinter_temp = cal_zt()
+    zt_list = set_of_zt
+    fig = Figure()
+    axis = fig.add_subplot(1,1,1)
+    axis.plot(temperatures, zt_list,)
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+
+    
+    return Response(output.getvalue(), mimetype='image/png')
+
 @app.route("/plot_zt", methods=['POST'])
 def plot_zt():
     zt_list = []
@@ -117,6 +157,29 @@ def plot_zt():
     
     return f'show picture below'
 
+def plot_zt2():
+    zt_list = []
+
+    set_of_zt, temperatures, material,sinter_temp = cal_zt()
+    img=io.BytesIO()
+
+   
+    zt_list = set_of_zt
+    plt = matplotlib.pyplot    
+    plt.plot(temperatures, zt_list, 'o', ms=9, mec='k', mfc='red', alpha=0.4)
+    plt.xlabel(f' Temperature')
+    plt.ylabel(f'ZT')
+    plt.title(f' ZT dependence temperature of {material} sintered at {sinter_temp} C')
+    plt.savefig(img, format='png')
+    img.seek(0)
+    plot_data = urllib3.parse.quote(base64.b64encode(img.getvalue()).decode('utf-8'))
+
+    plt.close()
+    plt.cla()
+    plt.clf()
+    
+    return plot_data
+
 
 
 @app.route("/predict", methods=['POST'])
@@ -131,6 +194,7 @@ def predict():
     except:
         error = "You put the wrong fomula form, try again!"
         pic = ""
+    pic2 =plot_zt2()
     formula = str(request.form['formula'])
     sin_temp = int(request.form['sin_temp'])
     #measure_temp = int(request.form['measure_temp'])
@@ -141,7 +205,7 @@ def predict():
     #output = prediction[0]
     Flask_Logo = os.path.join(app.config['UPLOAD_FOLDER'], f'prediction_{formula}_{sin_temp}.jpg')
     
-    return render_template('index.html', image=Flask_Logo, pic=pic, error=error)
+    return render_template('index.html', image=Flask_Logo, pic=pic, error=error, image2=pic2)
 
 
 if __name__ == "__main__":
