@@ -147,7 +147,7 @@ def plot_zt():
     set_of_zt, temperatures, material,sinter_temp = cal_zt()
     
     zt_list = set_of_zt
-    plt = matplotlib.pyplot
+ 
     plt.plot(temperatures, zt_list, 'o', ms=9, mec='k', mfc='red', alpha=0.4)
     plt.xlabel(f' Temperature')
     plt.ylabel(f'ZT')
