@@ -11,7 +11,8 @@ from flask import Response
 #mport numpy as np
 
 import pickle
-import urllib3
+import urllib.request, urllib.parse, urllib.error
+import ssl
 import os
 import numpy as np
 import pandas as pd
@@ -172,7 +173,7 @@ def plot_zt2():
     plt.title(f' ZT dependence temperature of {material} sintered at {sinter_temp} C')
     plt.savefig(img, format='png')
     img.seek(0)
-    plot_data = urllib3.parse.quote(base64.b64encode(img.getvalue()).decode('utf-8'))
+    plot_data = urllib.parse.quote(base64.b64encode(img.getvalue()).decode('utf-8'))
 
     plt.close()
     plt.cla()
