@@ -12,13 +12,13 @@ h1 {
   color:DodgerBlue;
 
 }
-h4 {
+h3 {
   color:#464646;
   font-size: 10px;
 
 }
 
-p1 {
+h4 {
   margin-Top:20px;
   color:grey;
 
@@ -46,11 +46,11 @@ button {
 <body>
 	<div class="login">
 		<h1>Machine learning model for predicting thermoelectric properties</h2>
-		<h4>This model was implemented with data extracted from published articles, totally up to 1500 datasets</h2>
+		<h3>This model was implemented with data extracted from published articles, totally up to 1500 datasets</h3>
 			
 			<form action="{{url_for('predict')}}" method="post">
-				<p1>You can use this mahine learning model to predict ZT value of thermoelectric materials with doping content</p>
-    			<p1>Fill the available materials:</p>
+				<h4>You can use this mahine learning model to predict ZT value of thermoelectric materials with doping content</h4>
+    			<h4>Fill the available materials:</h4>
 					<ul style="color:red;">
 						<li>PbTe</li>
 						<li>Co4Sb12</li>
@@ -58,13 +58,13 @@ button {
 						<li>BiCuSeO</li>
 						<li>Cu2Se</li>
 					  </ul>
-    			<p2>for example, Pb0.9Mg0.1Te1, Bi0.8K0.2CuSeO</p>
+    			<h4>for example, Pb0.9Mg0.1Te1, Bi0.8K0.2CuSeO</h4>
     			<input type="text" name="formula" placeholder="Pb0.9Mg0.1Te1" required="required">
    				<br>
    				<b   style="color:red;" >{{error}}</b>
     			<br>
     			<br>
-    			<p2>Fill the temperature you use to sinter the sample in Celsius such as 600</p>	
+    			<h4>Fill the temperature you use to sinter the sample in Celsius such as 600</h4>	
 				<input type="text" name="sin_temp" placeholder="sintering temperature" required="required">
 				<br>	
 				<br>
