@@ -38,7 +38,7 @@ def merge_data(formula, sin_temp, measure_temp):
     
     table = pd.DataFrame(data = {'formula':[formula], 'sinter temp Celcius':[sin_temp], 'measurement temperature' : [measure_temp], 'target':[1]})
     
-    data_and_features, y_train, formulae_train, skipped_train = generate_features(table, elem_prop='Magpie', drop_duplicates=False, extend_features=True, sum_feat=True)
+    data_and_features, y_train, formulae_train, skipped_train = generate_features(table, elem_prop='magpie', drop_duplicates=False, extend_features=True, sum_feat=True)
     
     data_and_selectFeatures = data_and_features[[
     'measurement temperature', 
