@@ -46,11 +46,14 @@ button {
 <body>
 	<div class="login">
 		<h1>Machine learning model for predicting thermoelectric properties</h2>
-		<h5>This model was implemented with data extracted from published articles, totally up to 1500 datasets</h5>
+		<h4>This model was implemented with data extracted from published articles, totally up to 1500 datasets</h4>
 			
 			<form action="{{url_for('predict')}}" method="post">
 				<p>
-				You can use this mahine learning model to predict ZT value of thermoelectric materials with doping content
+
+				<h6>You can use this mahine learning model to predict ZT value of thermoelectric materials with doping content</h6>
+				<br>
+				<br>
     			Fill the available materials:
 					<ul style="color:red;">
 						<li>PbTe</li>
@@ -64,9 +67,13 @@ button {
     			<input type="text" name="formula" placeholder="Pb0.9Mg0.1Te1" required="required">
    				<b   style="color:red;" >{{error}}</b>
     			<br>
+				<br>
+				<br>
     			<b   style="color:grey;" >Fill the temperature you use to sinter the sample in Celsius such as 600</b>
 				<br>
 				<input type="text" name="sin_temp" placeholder="sintering temperature" required="required">
+				<br>
+				<br>
 				<br>	
 				<button type="submit" class="btn btn-primary btn-block btn-large"> Predict Value!</button>
 		 		</p>
