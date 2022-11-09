@@ -122,7 +122,7 @@ def plot_zt2():
     plt.plot(temperatures, zt_list, 'o', ms=9, mec='k', mfc='red', alpha=0.4)
     plt.xlabel(f' Temperature C')
     plt.ylabel(f'ZT')
-    plt.title(f' ZT dependence temperature of {material} sintered at {sinter_temp} degree celsius(C)')
+    plt.title(f'Temperature dependaent ZT of {material} sintered at {sinter_temp} degree celsius(C)')
     plt.savefig(img, format='png')
     img.seek(0)
     plot_data = urllib.parse.quote(base64.b64encode(img.getvalue()).decode('utf-8'))
