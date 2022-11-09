@@ -49,14 +49,21 @@ button {
 		<h4>This model was implemented with data extracted from published articles, totally up to 1500 datasets</h2>
 			
 			<form action="{{url_for('predict')}}" method="post">
-    			<p1>Fill the based materials(PbTe, Co4Sb12, Mg2SnSi, BiCuSeO, Cu2Se) with chemical composition</p>
+    			<p1>Fill the available materials:</p>
+					<ul style="color:red;">
+						<li>PbTe</li>
+						<li>Co4Sb12</li>
+						<li>Mg2SnSi</li>
+						<li>BiCuSeO</li>
+						<li>Cu2Se</li>
+					  </ul>
     			<p2>for example, Pb0.9Mg0.1Te1, Bi0.8K0.2CuSeO</p>
     			<input type="text" name="formula" placeholder="Pb0.9Mg0.1Te1" required="required">
    				<br>
    				<b   style="color:red;" >{{error}}</b>
     			<br>
     			<br>
-    			<p1>Fill the temperature you sinter the sample in Celsius, for example, 700 C</p>	
+    			<p2>Fill the temperature you sinter the sample in Celsius, for example, 700 C</p>	
 				<input type="text" name="sin_temp" placeholder="700" required="required">
 				<br>	
 				<br>
@@ -73,7 +80,9 @@ button {
 	
 		<br>
         <picture>
-			<img class="plot" src="data:image/png;base64, {{ image2 }}" >
+			{if({{image2}}):
+				<img class="plot" src="data:image/png;base64, {{ image2 }}" >
+			}
         </picture>
 		
     	
