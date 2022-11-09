@@ -167,16 +167,16 @@ def predict():
         pic2 =plot_zt2()
         pic = "The picture was shown below"
         error =""
+        
     except:
         error = "You put the wrong fomula form, try again!"
         pic2 = ""
         pic = ""
-    pic2 =plot_zt2()
+    
     formula = str(request.form['formula'])
     sin_temp = int(request.form['sin_temp'])
     #measure_temp = int(request.form['measure_temp'])
-    
-
+   
     #x= generate_feature()
     #prediction = model.predict(x)
     #output = prediction[0]
