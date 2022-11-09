@@ -171,7 +171,7 @@ def predict():
         error = "You put the wrong fomula form, try again!"
         pic2 = ""
         pic = ""
-    
+    pic2 =plot_zt2()
     formula = str(request.form['formula'])
     sin_temp = int(request.form['sin_temp'])
     #measure_temp = int(request.form['measure_temp'])
