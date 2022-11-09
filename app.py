@@ -12,7 +12,7 @@ from flask import Response
 
 import pickle
 import urllib.request, urllib.parse, urllib.error
-import ssl
+
 import os
 import numpy as np
 import pandas as pd
@@ -21,7 +21,6 @@ import matplotlib
 matplotlib.use('Agg')
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
-import matplotlib.pyplot as plt
 
 
 
@@ -39,7 +38,7 @@ def merge_data(formula, sin_temp, measure_temp):
     
     table = pd.DataFrame(data = {'formula':[formula], 'sinter temp Celcius':[sin_temp], 'measurement temperature' : [measure_temp], 'target':[1]})
     
-    data_and_features, y_train, formulae_train, skipped_train = generate_features(table, elem_prop='magpie', drop_duplicates=False, extend_features=True, sum_feat=True)
+    data_and_features, y_train, formulae_train, skipped_train = generate_features(table, elem_prop='Magpie', drop_duplicates=False, extend_features=True, sum_feat=True)
     
     data_and_selectFeatures = data_and_features[[
     'measurement temperature', 
@@ -78,21 +77,7 @@ def merge_data(formula, sin_temp, measure_temp):
     return data_and_selectFeatures
 IMG_FOLDER = os.path.join('static', 'IMG')
 app.config['UPLOAD_FOLDER'] = IMG_FOLDER 
-""" 
-app.config['SECRET_KEY'] = 'asdfgklj'
 
-photos = UploadSet('photos', IMAGES)
-
-class UploadForm(FlaskForm):
-    photo = FileField(
-        validators=[
-            FileAllowed(photos, 'Only images are allowed'),
-            FileRequired('File field should not be empty')
-            
-        ]
-    )
-    submit = SubmitField('Upload')
- """
 @app.route("/")
 @app.route('/index')
 def hello():
@@ -104,9 +89,7 @@ def generate_feature():
     sin_temp = int(request.form['sin_temp'])
     measure_temp = int(request.form['measure_temp'])
     featureTotal = merge_data(formula, sin_temp, measure_temp)
-    #scaler = StandardScaler()
-   # fit_data = scaler.fit_transform(featureTotal)
-   # feature = normalize(featureTotal)
+
     
     
     return featureTotal
@@ -125,20 +108,9 @@ def cal_zt():
         set_of_zt.append(zt)
     
     return set_of_zt, temperatures, material,sinter_temp
-#asd
 
-def display_zt():
-    zt_list = []
-    set_of_zt, temperatures, material,sinter_temp = cal_zt()
-    zt_list = set_of_zt
-    fig = Figure()
-    axis = fig.add_subplot(1,1,1)
-    axis.plot(temperatures, zt_list,)
-    output = io.BytesIO()
-    FigureCanvas(fig).print_png(output)
 
-    
-    return Response(output.getvalue(), mimetype='image/png')
+
 
 @app.route("/plot_zt", methods=['POST'])
 def plot_zt():
@@ -147,7 +119,7 @@ def plot_zt():
     set_of_zt, temperatures, material,sinter_temp = cal_zt()
     
     zt_list = set_of_zt
- 
+    plt = matplotlib.pyplot
     plt.plot(temperatures, zt_list, 'o', ms=9, mec='k', mfc='red', alpha=0.4)
     plt.xlabel(f' Temperature')
     plt.ylabel(f'ZT')
@@ -167,7 +139,7 @@ def plot_zt2():
 
    
     zt_list = set_of_zt
-  
+    plt = matplotlib.pyplot    
     plt.plot(temperatures, zt_list, 'o', ms=9, mec='k', mfc='red', alpha=0.4)
     plt.xlabel(f' Temperature')
     plt.ylabel(f'ZT')
@@ -191,12 +163,14 @@ def predict():
     #measure_temp = int(request.form['measure_temp'])
     #feature = merge_data(formula, sin_temp, measure_temp)
     try:
-        pic = plot_zt()
+       
+        pic2 =plot_zt2()
+        pic = "The picture was shown below"
         error =""
     except:
         error = "You put the wrong fomula form, try again!"
         pic = ""
-    pic2 =plot_zt2()
+    
     formula = str(request.form['formula'])
     sin_temp = int(request.form['sin_temp'])
     #measure_temp = int(request.form['measure_temp'])
