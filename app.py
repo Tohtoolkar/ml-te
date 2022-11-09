@@ -110,27 +110,6 @@ def cal_zt():
     return set_of_zt, temperatures, material,sinter_temp
 
 
-
-
-@app.route("/plot_zt", methods=['POST'])
-def plot_zt():
-    zt_list = []
-
-    set_of_zt, temperatures, material,sinter_temp = cal_zt()
-    
-    zt_list = set_of_zt
-  
-    plt.plot(temperatures, zt_list, 'o', ms=9, mec='k', mfc='red', alpha=0.4)
-    plt.xlabel(f' Temperature')
-    plt.ylabel(f'ZT')
-    plt.title(f' ZT dependence temperature of {material} sintered at {sinter_temp} C')
-    plt.savefig(f'./static/IMG/prediction_{material}_{sinter_temp}.jpg')
-    plt.close()
-    plt.cla()
-    plt.clf()
-    
-    return f'show picture below'
-
 def plot_zt2():
     zt_list = []
 
@@ -141,9 +120,9 @@ def plot_zt2():
     zt_list = set_of_zt
      
     plt.plot(temperatures, zt_list, 'o', ms=9, mec='k', mfc='red', alpha=0.4)
-    plt.xlabel(f' Temperature')
+    plt.xlabel(f' Temperature C')
     plt.ylabel(f'ZT')
-    plt.title(f' ZT dependence temperature of {material} sintered at {sinter_temp} C')
+    plt.title(f' ZT dependence temperature of {material} sintered at {sinter_temp} degree celsius(C)')
     plt.savefig(img, format='png')
     img.seek(0)
     plot_data = urllib.parse.quote(base64.b64encode(img.getvalue()).decode('utf-8'))
