@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 #from flask_uploads import UploadSet, IMAGES, confiure_uploads
 #from flask_wrtf import FlaskForm
 #from flasl_wrf.file import FileField, FileRequired, FileAllowed
@@ -81,62 +81,12 @@ app.config['UPLOAD_FOLDER'] = IMG_FOLDER
 @app.route("/")
 @app.route('/index')
 def hello():
+   
     return render_template('index.html' )
 
-
-def Doped_mat():
-    material = str(request.form['formula'])
-    dopant1 = dopant1 = str(request.form['dopant1'])
-    dopant2 = dopant2 = str(request.form['dopant2'])
-    dop_con1 = float(request.form['dop_con1'])
-    dop_con2 = float(request.form['dop_con2'])
-
-    mat_host = {'h1': "", 'con1':"", 'h2':"", 'con2':"" , 'h3':""}
-    if(material == "PbTe"):
-        mat_host = {'h1': "Pb", 'con1':1, 'h2':"Te", 'con2':2 , 'h3':""}
-    
-    elif(material == "Co4Sb12"):
-        mat_host = {'h1': "Co", 'con1':4, 'h2':"Sb", 'con2':12 , 'h3':""}
-     
-    elif(material == "Mg2Si"):
-        mat_host = {'h1': "Mg", 'con1':2, 'h2':"Si", 'con2':1 , 'h3':""}
-    
-    elif(material == "BiCuSeO"):
-        mat_host = {'h1': "Bi", 'con1':1, 'h2':"Cu", 'con2':1 , 'h3':"SeO"}
-     
-    elif(material == "Cu2Se"):
-        mat_host = {'h1': "Cu", 'con1':2, 'h2':"Se", 'con2':1,  'h3':""}
-    
-     
-    sum_dop1 = mat_host["con1"] - dop_con1
-    sum_dop2 = mat_host["con2"] - dop_con2
-    if(dop_con1 == 0.0):
-        dopant1 = ""
-        dop_con1 = ""
-    else:
-        dopant1 = str(request.form['dopant1'])
-        dop_con1 = float(request.form['dop_con1'])
-        sum_dop1 = mat_host["con1"] - dop_con1
-        sum_dop2 = mat_host["con2"] - dop_con2   
-  
-    if(dop_con2 == 0.0):
-        dopant2 = ""
-        dop_con2 = ""
-    else:
-        dopant2 = str(request.form['dopant2'])
-        dop_con2 = float(request.form['dop_con2'])
-        sum_dop1 = mat_host["con1"] - dop_con1
-        sum_dop2 = mat_host["con2"] - dop_con2
-   
-
- 
-
-    pred_mat =  mat_host["h1"] + str(sum_dop1) + dopant1 + str(dop_con1) + mat_host["h2"] +str(sum_dop2) + dopant2 + str(dop_con2) + mat_host["h3"]
-    print("pred_mat",pred_mat)
-    return pred_mat
-
 def generate_feature():
-    formula = Doped_mat()
+    formula = str(request.form['formula'])
+
     sin_temp = int(request.form['sin_temp'])
     measure_temp = int(request.form['measure_temp'])
     featureTotal = merge_data(formula, sin_temp, measure_temp)
@@ -146,15 +96,13 @@ def generate_feature():
     return featureTotal
 
 @app.route("/cal_zt", methods=['POST'])
-
-
 def cal_zt():
     set_of_zt = []
-    material = Doped_mat()
+    material = str(request.form['formula'])
     sinter_temp = int(request.form['sin_temp'])
-    #print("Doped_mat()", Doped_mat())
     set_of_zt = []
     temperatures = [500,550,600,650,700]
+    set_of_zt = []
     set_of_zt = []
     for i in temperatures:
         zt = model.predict(merge_data(material,sinter_temp,i ))[0]
@@ -173,15 +121,9 @@ def plot_zt2():
     zt_list = set_of_zt
      
     plt.plot(temperatures, zt_list, 'o', ms=9, mec='k', mfc='red', alpha=0.4)
-    plt.xlim([530, 730])
-    plt.ylim([0, 2])
-    plt.title(f'Temperature dependent ZT ')
-    plt.text(540, 1.85, f'Material: {material}', fontsize=10,  color='#3e424b',weight="bold")
-    plt.text(540, 1.73, f'Sintered: {sinter_temp} degree celsius', fontsize=10,  color='#3e424b',weight="bold")
     plt.xlabel(f' Temperature C')
     plt.ylabel(f'ZT')
-  
-    
+    plt.title(f'Temperature dependaent ZT of {material} sintered at {sinter_temp} degree celsius(C)')
     plt.savefig(img, format='png')
     img.seek(0)
     plot_data = urllib.parse.quote(base64.b64encode(img.getvalue()).decode('utf-8'))
@@ -192,23 +134,19 @@ def plot_zt2():
     
     return plot_data
 
-@app.route('/getdata/<string:predmat>', methods=['POST'])
-def getdata(predmat):
-    predmat = json.loads(predmat)
-    
-    print("----------")
-    print(predmat)
-    return redirect(url_for('predict',keys=predmat))
 
-@app.route('/predict', methods=['POST',"GET"])
+
+@app.route('/predict', methods=['POST'])
 def predict():
+
+
     #formula = str(request.form['formula'])
     #sin_temp = int(request.form['sin_temp'])
     #measure_temp = int(request.form['measure_temp'])
     #feature = merge_data(formula, sin_temp, measure_temp)
    # data= json.loads(materialPred)
-   # print("testtt", getdata(""))
-   # print("------Check", getdata()
+    
+    
     try:
        
         pic2 =plot_zt2()
@@ -220,7 +158,6 @@ def predict():
         error = "You put the wrong fomula form, try again!"
         pic2 = ""
         pic = ""
-        print("Errror")
 
     
    

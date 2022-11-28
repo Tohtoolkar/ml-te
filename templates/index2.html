@@ -52,73 +52,85 @@ button {
 		<br>
 		<b>Fill the available materials:</b>
 	
-	
-			<form action="{{url_for('predict')}}" method="post"   >
+		<form action="/action_page.php" style="color:red;">
+		<ul style="color:red;">
+		<input type="radio" id="type1" name="material" value="PbTe" onclick="myFunction1()">
+		<label for="type1"> PbTe</label><br>
+
+		<input type="radio" id="type2" name="material" value="Co4Sb12"  onclick="myFunction2()">
+		<label for="type2"> Co<sub>4</sub>Sb<sub>12</sub></label><br>
+
+		<input type="radio" id="type3" name="material" value="Mg2Si" onclick="myFunction3()">
+		<label for="type3"> Mg<sub>2</sub>Si</label><br>
+
+		<input type="radio" id="type4" name="material" value="BiCuSeO" onclick="myFunction4()">
+		<label for="type4"> BiCuSeO</label><br>
+
+		<input type="radio" id="type5" name="material" value="Cu2Se" onclick="myFunction5()" >
+		<label for="type5"> Cu<sub>2</sub>Se</label><br><br>
+
+
+		</ul>
+		</form>
+			<form action="{{url_for('predict')}}" method="post" >
 				<p>
-					<ul style="color:red;">
-						<input type="radio" id="type1" name="formula" value="PbTe" onclick="myFunction1()">
-						<label for="type1"> PbTe</label><br>
+
 				
-						<input type="radio" id="type2" name="formula" value="Co4Sb12"  onclick="myFunction2()">
-						<label for="type2"> Co<sub>4</sub>Sb<sub>12</sub></label><br>
-				
-						<input type="radio" id="type3" name="formula" value="Mg2Si" onclick="myFunction3()">
-						<label for="type3"> Mg<sub>2</sub>Si</label><br>
-				
-						<input type="radio" id="type4" name="formula" value="BiCuSeO" onclick="myFunction4()">
-						<label for="type4"> BiCuSeO</label><br>
-				
-						<input type="radio" id="type5" name="formula" value="Cu2Se" onclick="myFunction5()" >
-						<label for="type5"> Cu<sub>2</sub>Se</label><br><br>
-					</ul>
-				<b style="color:grey;">Here is your based material.</b>
+			
 				<p id="demo"></p>
 				<b   style="color:grey;" >set the dopant and contents for substitution</b>
 				<br>
 				<p id="host1"></p>
-				<select name="dopant1" id="dopant1" onChange="getMaterial()">
-					<option>Ac</option>
+				<select id="dopant1" onChange="getMaterial()">
+					<option>dopant 1</option>
 				</select>
-				<select name="dop_con1" id="doped_contents1" onChange="getMaterial()">
-					<option>0.0</option>
+				<select id="doped_contents1" onChange="getMaterial()">
+					<option>0</option>
+				</select>
+				<br>
+				<br>
+				<p id="host2"></p>
+				
+				<select id="dopant2"  onChange="getMaterial()">
+					<option >dopant 2</option>
+				</select>
+				<select id="doped_contents2"  onChange="getMaterial()">
+					<option>0</option>
 				</select>
 				<br>
 				<br>
 
-				<p id="host2"></p>
-				<select name="dopant2" id="dopant2"  onChange="getMaterial()">
-					<option >Ac</option>
-				</select>
-				<select name="dop_con2" id="doped_contents2"  onChange="getMaterial()">
-					<option>0.0</option>
-				</select>
-				<br>
-				<br>
-				<b style="color:grey;">Here is your doped material</b>
-				<br>
 				<b id="mat1"></b><sub><b id="con1"></b></sub><b id="dopant_mat1" style="color:#e47200;"></b><sub><b id="dop_con1" style="color:#e47200;"></b></sub>
 				<b id="mat2"></b><sub><b id="con2"></b></sub><b id="dopant_mat2" style="color:#e47200;"></b><sub><b id="dop_con2" style="color:#e47200;"></b></sub>
 				<b id="mat3"></b>
 				<b id="mat4"></b>
-	
+			
+				<p id="predict_mat"></p>
+				<p id="predict_mat_con" name="formula"></p>
 				<br>
+				<br>
+				<br>
+				<b   style="color:grey;" >material, for example, Pb0.9Mg0.1Te, Bi0.8K0.2CuSeO</b>
+				<br>
+    	
    				<b   style="color:red;" >{{error}}</b>
-    		
+    			<br>
+				<br>
 			
     			<b   style="color:grey;" >sintering temperature in celsius such as 600, 800, 1,000</b>
 				<br>
 				<input type="text" name="sin_temp" placeholder="600" required="required" >
+				<input type="text" name="formula" placeholder="600" required="required" >
+
 				<br>
 				<br>
-				<button type="submit" class="btn btn-primary btn-block btn-large" >Predict ZT!</button>
-	
-				<p id="predict_mat_con" style="color:white;" ></p>
-				<p id="mat_prediction" style="color:white;" ></p>
+				<button type="submit" class="btn btn-primary btn-block btn-large"  > Predict Value!</button>
 				
 		 		</p>
 			</form>
-
-		<b style="color:green;">{{pic}}</b>
+			<br>
+	    <br>
+		<b>{{pic}}</b>
 		<br>
         <picture>
 				<img class="plot" src="data:image/png;base64, {{ image2 }}" >
@@ -268,7 +280,7 @@ button {
 		}
 
 
-		document.getElementById("mat_prediction").innerHTML = mat_prediction
+		document.getElementByName("formula").innerHTML = mat_prediction.toString()
 		document.getElementById("mat1").innerHTML =mat1
 		document.getElementById("con1").innerHTML =con1
 		document.getElementById("dopant_mat1").innerHTML =dopant1
@@ -281,25 +293,6 @@ button {
 
 		document.getElementById("mat3").innerHTML =mat3
 		document.getElementById("mat4").innerHTML =mat4
-
-        if(dop_con1 == 0.0){
-            document.getElementById("dopant_mat1").innerHTML =null
-            document.getElementById("dop_con1").innerHTML =null
-        }else{
-            document.getElementById("dop_con1").innerHTML =dop_con1
-            document.getElementById("dopant_mat1").innerHTML =dopant1
-        }
-    
-
-
-        if(dop_con2 == 0.0){
-            document.getElementById("dopant_mat2").innerHTML = null
-            document.getElementById("dop_con2").innerHTML =null
-        }else{
-            document.getElementById("dopant_mat2").innerHTML =dopant2
-            document.getElementById("dop_con2").innerHTML =dop_con2
-        } 
-
 	}
 
 
@@ -309,8 +302,6 @@ button {
 		document.getElementById("host1").innerHTML = "Pb"
 		document.getElementById("host2").innerHTML = "Te"
 		document.getElementById("predict_mat_con").innerHTML = "PbTe"
-		
-		getMaterial()
 	  }
 	  function myFunction2() {
 		var x2 = document.getElementById("type2").value;
@@ -318,8 +309,6 @@ button {
 		document.getElementById("host1").innerHTML = "Co"
 		document.getElementById("host2").innerHTML = "Sb"
 		document.getElementById("predict_mat_con").innerHTML = "Co14Sb12"
-				
-		getMaterial()
 	  }
 	  function myFunction3() {
 		var x3 = document.getElementById("type3").value;
@@ -327,8 +316,6 @@ button {
 		document.getElementById("host1").innerHTML = "Mg"
 		document.getElementById("host2").innerHTML = "Si"
 		document.getElementById("predict_mat_con").innerHTML = "Mg2Si"
-				
-		getMaterial()
 	  }
 	  function myFunction4() {
 		var x4 = document.getElementById("type4").value;
@@ -336,8 +323,6 @@ button {
 		document.getElementById("host1").innerHTML = "Bi"
 		document.getElementById("host2").innerHTML = "Cu"
 		document.getElementById("predict_mat_con").innerHTML = "BiCuSeO"
-				
-		getMaterial()
 	  }
 	  function myFunction5() {
 		var x5 = document.getElementById("type5").value;
@@ -345,12 +330,31 @@ button {
 		document.getElementById("host1").innerHTML = "Cu"
 		document.getElementById("host2").innerHTML = "Se"
 		document.getElementById("predict_mat_con").innerHTML = "Cu2Se"
-				
-		getMaterial()
 	  }
 
+	  function PredictZT() {
+		let predmat = {
+			"value": mat_prediction.toString(),
+			"type": 'SS'
+		}
 
-
+	
+		const request = new XMLHttpRequest()
+		request.open('POST', `/predict/${JSON.stringify(predmat)}`)
+		request.onload = () => {
+			const flaskMessage = request.responseText
+			console.log("test",flaskMessage)
+		}
+		request.send()
+	  }
+	  function sendData () {
+		//document.getElementById("predict_mat_con").innerHTML = "PbTe"
+		let predmat = document.getElementById("predict_mat_con").innerHTML
+		
+		const request = new XMLHttpRequest()
+		request.open('POST', `/predict/${JSON.stringify(predmat)}`)
+		request.send();
+	  }
 
 	
 	
