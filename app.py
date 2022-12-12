@@ -172,12 +172,12 @@ def plot_zt2():
    
     zt_list = set_of_zt
      
-    plt.plot(temperatures, zt_list, 'o', ms=9, mec='k', mfc='red', alpha=0.4)
-    plt.xlim([530, 730])
+    plt.plot(temperatures, zt_list,  ms=9, mec='k', mfc='red', alpha=0.4, **{'color': 'lightsteelblue', 'marker': 'o'} )
+    plt.xlim([470, 730])
     plt.ylim([0, 2])
     plt.title(f'Temperature dependent ZT ')
-    plt.text(540, 1.85, f'Material: {material}', fontsize=10,  color='#3e424b',weight="bold")
-    plt.text(540, 1.73, f'Sintered: {sinter_temp} degree celsius', fontsize=10,  color='#3e424b',weight="bold")
+    plt.text(500, 1.85, f'Material: {material}', fontsize=10,  color='#3e424b',weight="bold")
+    plt.text(500, 1.73, f'Sintered: {sinter_temp} degree celsius', fontsize=10,  color='#3e424b',weight="bold")
     plt.xlabel(f' Temperature C')
     plt.ylabel(f'ZT')
   

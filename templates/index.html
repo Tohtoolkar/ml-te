@@ -76,10 +76,10 @@ button {
 				<b   style="color:grey;" >set the dopant and contents for substitution</b>
 				<br>
 				<p id="host1"></p>
-				<select name="dopant1" id="dopant1" onChange="getMaterial()">
+				<select name="dopant1" id="dopant1" onChange="getMaterial()" >
 					<option>Ac</option>
 				</select>
-				<select name="dop_con1" id="doped_contents1" onChange="getMaterial()">
+				<select name="dop_con1" id="doped_contents1" onChange="getMaterial()"  required="required" >
 					<option>0.0</option>
 				</select>
 				<br>
@@ -89,7 +89,7 @@ button {
 				<select name="dopant2" id="dopant2"  onChange="getMaterial()">
 					<option >Ac</option>
 				</select>
-				<select name="dop_con2" id="doped_contents2"  onChange="getMaterial()">
+				<select name="dop_con2" id="doped_contents2"  onChange="getMaterial()"   required="required">
 					<option>0.0</option>
 				</select>
 				<br>
@@ -103,7 +103,7 @@ button {
 	
 				<br>
    				<b   style="color:red;" >{{error}}</b>
-    		
+				<br>
 			
     			<b   style="color:grey;" >sintering temperature in celsius such as 600, 800, 1,000</b>
 				<br>
@@ -149,8 +149,8 @@ button {
 	'Mc','Md','Mg', 'Mn','Mo','Mt', 'N','Na','Nd','Nb', 'Ne', 'Np',  'Ni', 'Nh','No', 'O','Og','Os','P','Pa','Pb','Pd', 'Pm','Po','Pr','Pt','Pu','Rb','Ru',
 	'Ra','Re', 'Rf','Rh', 'Rg','Rn','S','Sb','Sc', 'Se','Sg','Si',  'Sm', 'Sn', 'Sr','Ta', 'Tb', 'Tc','Te', 'Th','Ti','Tl','Tm', 'Ts','U','V','W', 'Xe','Y', 'Yb', 'Zn','Zr',
 	]
-	var doped_contents = [0.02, 0.05, 0.08, 0.1, 0.3, 0.5, 0.7, 0.9]
-
+	var doped_contents = [0.00, 0.02, 0.04, 0.06, 0.08, 0.10]
+	var doped_contents_for_skutt = [0.00, 0.10, 0.20, 0.40, 0.60, 0.80]
 //here for dropdown list selection
 	var select = document.getElementById("dopant1");
     for(var i = 0; i < options.length; i++) {
@@ -168,22 +168,38 @@ button {
     el.value = opt;
     select.appendChild(el);
 } 
-	var content = document.getElementById("doped_contents1");
-	for(var i = 0; i < doped_contents.length; i++) {
-    var opt = doped_contents[i];
-    var el = document.createElement("option");
-    el.textContent = opt;
-    el.value = opt;
-    content.appendChild(el);
-} 	
-	var content = document.getElementById("doped_contents2");
-	for(var i = 0; i < doped_contents.length; i++) {
-	var opt = doped_contents[i];
-	var el = document.createElement("option");
-	el.textContent = opt;
-	el.value = opt;
-	content.appendChild(el);
-} 
+
+
+	function change_droplist_dopcon(arr, dop_con1,dop_con2) {
+
+		while (document.getElementById("doped_contents1").options.length > 0) {                
+			document.getElementById("doped_contents1").remove(0);
+		}      
+		var content = document.getElementById("doped_contents1");
+		for(var i = 0; i < arr.length; i++) {
+		var opt = arr[i];
+		var el = document.createElement("option");
+		el.textContent = opt;
+		el.value = opt;
+		content.appendChild(el);
+	} 
+		document.getElementById("doped_contents1").value = dop_con1
+
+
+		
+		while (document.getElementById("doped_contents2").options.length > 0) {                
+			document.getElementById("doped_contents2").remove(0);
+		}      
+		var content = document.getElementById("doped_contents2");
+		for(var i = 0; i < arr.length; i++) {
+		var opt = arr[i];
+		var el = document.createElement("option");
+		el.textContent = opt;
+		el.value = opt;
+		content.appendChild(el);
+	} 
+		document.getElementById("doped_contents2").value = dop_con2
+	}
 
 //เลือก material ที่ต้องการ
 	function getMaterial() {
@@ -212,6 +228,8 @@ button {
 			 con2 = 1-document.getElementById("doped_contents2").value
 			 dopant2 = document.getElementById("dopant2").value
 			 dop_con2 = document.getElementById("doped_contents2").value
+
+			 change_droplist_dopcon(doped_contents,dop_con1, dop_con2)
 			
 			mat_prediction = mat1 + con1.toFixed(2)+dopant1+ dop_con1 + mat2 +con2.toFixed(2)+dopant2+ dop_con2
 		} else if (document.getElementById("host1").innerHTML == "Co"){
@@ -224,7 +242,8 @@ button {
 			con2 = 12-document.getElementById("doped_contents2").value
 			dopant2 = document.getElementById("dopant2").value
 			dop_con2 = document.getElementById("doped_contents2").value
-		   
+
+			change_droplist_dopcon(doped_contents_for_skutt,dop_con1, dop_con2)
 		    mat_prediction = mat1 + con1.toFixed(2)+dopant1+ dop_con1 + mat2 +con2.toFixed(2)+dopant2+ dop_con2
 		} else if (document.getElementById("host1").innerHTML == "Mg"){
 			mat1 = "Mg"
@@ -237,6 +256,7 @@ button {
 			dopant2 = document.getElementById("dopant2").value
 			dop_con2 = document.getElementById("doped_contents2").value
 		   
+			change_droplist_dopcon(doped_contents,dop_con1, dop_con2)
 		    mat_prediction = mat1 + con1.toFixed(2)+dopant1+ dop_con1 + mat2 +con2.toFixed(2)+dopant2+ dop_con2
 		}else if (document.getElementById("host1").innerHTML == "Bi"){
 			mat1 = "Bi"
@@ -252,6 +272,7 @@ button {
 			mat3 = "Se"
 			mat4 = "O"
 		   
+			change_droplist_dopcon(doped_contents,dop_con1, dop_con2)
 		    mat_prediction = mat1 + con1.toFixed(2)+dopant1+ dop_con1 + mat2 +con2.toFixed(2)+dopant2+ dop_con2
 		}else if (document.getElementById("host1").innerHTML == "Cu"){
 			mat1 = "Cu"
@@ -264,6 +285,7 @@ button {
 			dopant2 = document.getElementById("dopant2").value
 			dop_con2 = document.getElementById("doped_contents2").value
 		   
+			change_droplist_dopcon(doped_contents,dop_con1, dop_con2)
 		    mat_prediction = mat1 + con1.toFixed(2) + dopant1+ dop_con1 + mat2 + con2.toFixed(2) + dopant2+ dop_con2
 		}
 
@@ -318,7 +340,7 @@ button {
 		document.getElementById("host1").innerHTML = "Co"
 		document.getElementById("host2").innerHTML = "Sb"
 		document.getElementById("predict_mat_con").innerHTML = "Co14Sb12"
-				
+		
 		getMaterial()
 	  }
 	  function myFunction3() {
