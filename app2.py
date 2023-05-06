@@ -150,7 +150,7 @@ def predict():
     try:
        
         pic2 =plot_zt2()
-        pic = "The picture was shown below"
+        pic = ""
         error =""
        
         

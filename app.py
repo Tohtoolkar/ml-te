@@ -178,7 +178,7 @@ def plot_zt2():
     plt.title(f'Temperature dependent ZT ')
     plt.text(500, 1.85, f'Material: {material}', fontsize=10,  color='#3e424b',weight="bold")
     plt.text(500, 1.73, f'Sintered: {sinter_temp} degree celsius', fontsize=10,  color='#3e424b',weight="bold")
-    plt.xlabel(f' Temperature C')
+    plt.xlabel(f' Temperature ($^๐$C)')
     plt.ylabel(f'ZT')
   
     
@@ -212,7 +212,7 @@ def predict():
     try:
        
         pic2 =plot_zt2()
-        pic = "The picture was shown below"
+        pic = ""
         error =""
        
         

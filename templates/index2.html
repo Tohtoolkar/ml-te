@@ -48,9 +48,9 @@ button {
 	<div class="login">
 		<h2>Machine learning model for predicting thermoelectric properties</h2>
 		<h4>This model was implemented with data extracted from published articles, totally up to 1500 datasets</h4>
-		<h5>You can use this machine learning model to predict ZT value of thermoelectric materials with dopant from 500 to 700 degree celsius</h5>
+		<h5>You can use this machine learning model to predict ZT value of doped thermoelectric materials from 500 to 700 <sup>๐</sup>C</h5>
 		<br>
-		<b>Fill the available materials:</b>
+		<b>select based thermoelectric material:</b>
 	
 		<form action="/action_page.php" style="color:red;">
 		<ul style="color:red;">
@@ -78,7 +78,7 @@ button {
 				
 			
 				<p id="demo"></p>
-				<b   style="color:grey;" >set the dopant and contents for substitution</b>
+				<b   style="color:grey;" >set the dopants and concentrations at the particular substitutional site</b>
 				<br>
 				<p id="host1"></p>
 				<select id="dopant1" onChange="getMaterial()">
@@ -117,7 +117,7 @@ button {
     			<br>
 				<br>
 			
-    			<b   style="color:grey;" >sintering temperature in celsius such as 600, 800, 1,000</b>
+    			<b   style="color:grey;" > set sintering temperature in <sup>๐</sup>C such as 600, 800, 1,000</b>
 				<br>
 				<input type="text" name="sin_temp" placeholder="600" required="required" >
 				<input type="text" name="formula" placeholder="600" required="required" >
