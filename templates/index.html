@@ -321,7 +321,7 @@ button {
             document.getElementById("dopant_mat2").innerHTML =dopant2
             document.getElementById("dop_con2").innerHTML =dop_con2
         } 
-
+		event.preventDefault()
 	}
 
 
@@ -333,6 +333,7 @@ button {
 		document.getElementById("predict_mat_con").innerHTML = "PbTe"
 		
 		getMaterial()
+		event.preventDefault()
 	  }
 	  function myFunction2() {
 		var x2 = document.getElementById("type2").value;
@@ -342,6 +343,7 @@ button {
 		document.getElementById("predict_mat_con").innerHTML = "Co14Sb12"
 		
 		getMaterial()
+		event.preventDefault()
 	  }
 	  function myFunction3() {
 		var x3 = document.getElementById("type3").value;
@@ -351,6 +353,7 @@ button {
 		document.getElementById("predict_mat_con").innerHTML = "Mg2Si"
 				
 		getMaterial()
+		event.preventDefault()
 	  }
 	  function myFunction4() {
 		var x4 = document.getElementById("type4").value;
@@ -360,6 +363,7 @@ button {
 		document.getElementById("predict_mat_con").innerHTML = "BiCuSeO"
 				
 		getMaterial()
+		event.preventDefault()
 	  }
 	  function myFunction5() {
 		var x5 = document.getElementById("type5").value;
@@ -369,6 +373,7 @@ button {
 		document.getElementById("predict_mat_con").innerHTML = "Cu2Se"
 				
 		getMaterial()
+		event.preventDefault()
 	  }
 
 
