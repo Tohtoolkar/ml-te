@@ -230,7 +230,7 @@ button {
 			 dop_con2 = document.getElementById("doped_contents2").value
 
 			 change_droplist_dopcon(doped_contents,dop_con1, dop_con2)
-			
+			 event.preventDefault()
 			mat_prediction = mat1 + con1.toFixed(2)+dopant1+ dop_con1 + mat2 +con2.toFixed(2)+dopant2+ dop_con2
 		} else if (document.getElementById("host1").innerHTML == "Co"){
 			mat1 = "Co"
@@ -244,6 +244,7 @@ button {
 			dop_con2 = document.getElementById("doped_contents2").value
 
 			change_droplist_dopcon(doped_contents_for_skutt,dop_con1, dop_con2)
+			event.preventDefault()
 		    mat_prediction = mat1 + con1.toFixed(2)+dopant1+ dop_con1 + mat2 +con2.toFixed(2)+dopant2+ dop_con2
 		} else if (document.getElementById("host1").innerHTML == "Mg"){
 			mat1 = "Mg"
@@ -257,6 +258,7 @@ button {
 			dop_con2 = document.getElementById("doped_contents2").value
 		   
 			change_droplist_dopcon(doped_contents,dop_con1, dop_con2)
+			event.preventDefault()
 		    mat_prediction = mat1 + con1.toFixed(2)+dopant1+ dop_con1 + mat2 +con2.toFixed(2)+dopant2+ dop_con2
 		}else if (document.getElementById("host1").innerHTML == "Bi"){
 			mat1 = "Bi"
@@ -273,6 +275,7 @@ button {
 			mat4 = "O"
 		   
 			change_droplist_dopcon(doped_contents,dop_con1, dop_con2)
+			event.preventDefault()
 		    mat_prediction = mat1 + con1.toFixed(2)+dopant1+ dop_con1 + mat2 +con2.toFixed(2)+dopant2+ dop_con2
 		}else if (document.getElementById("host1").innerHTML == "Cu"){
 			mat1 = "Cu"
@@ -286,10 +289,11 @@ button {
 			dop_con2 = document.getElementById("doped_contents2").value
 		   
 			change_droplist_dopcon(doped_contents,dop_con1, dop_con2)
+			event.preventDefault()
 		    mat_prediction = mat1 + con1.toFixed(2) + dopant1+ dop_con1 + mat2 + con2.toFixed(2) + dopant2+ dop_con2
 		}
 
-
+		event.preventDefault()
 		document.getElementById("mat_prediction").innerHTML = mat_prediction
 		document.getElementById("mat1").innerHTML =mat1
 		document.getElementById("con1").innerHTML =con1
@@ -303,11 +307,13 @@ button {
 
 		document.getElementById("mat3").innerHTML =mat3
 		document.getElementById("mat4").innerHTML =mat4
-
+		
         if(dop_con1 == 0.0){
+			event.preventDefault()
             document.getElementById("dopant_mat1").innerHTML =null
             document.getElementById("dop_con1").innerHTML =null
         }else{
+			event.preventDefault()
             document.getElementById("dop_con1").innerHTML =dop_con1
             document.getElementById("dopant_mat1").innerHTML =dopant1
         }
@@ -315,9 +321,11 @@ button {
 
 
         if(dop_con2 == 0.0){
+			event.preventDefault()
             document.getElementById("dopant_mat2").innerHTML = null
             document.getElementById("dop_con2").innerHTML =null
         }else{
+			event.preventDefault()
             document.getElementById("dopant_mat2").innerHTML =dopant2
             document.getElementById("dop_con2").innerHTML =dop_con2
         } 
