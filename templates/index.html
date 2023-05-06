@@ -53,7 +53,7 @@ button {
 		<b>select based thermoelectric material:</b>
 	
 	
-			<form action="{{url_for('predict')}}" method="post"   >
+			<form action="{{url_for('predict')}}" method="post" class="form-anticlear"  >
 				<p>
 					<ul style="color:red;">
 						<input type="radio" id="type1" name="formula" value="PbTe" onclick="myFunction1()">
@@ -381,3 +381,4 @@ button {
 
 </body>
 </html>
+<script src="https://cdn.jsdelivr.net/gh/akjpro/form-anticlear/base.js"></script>
