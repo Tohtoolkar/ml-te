@@ -209,17 +209,18 @@ def predict():
    # data= json.loads(materialPred)
    # print("testtt", getdata(""))
    # print("------Check", getdata()
-    formula = str(request.form['formula'])
-    dopant1 = str(request.form['dopant1'])
-    dopant2 =  str(request.form['dopant2'])
-    dop_con1 = float(request.form['dop_con1'])
-    dop_con2 = float(request.form['dop_con2'])
+  
 
     try:
        
         pic2 =plot_zt2()
         pic = ""
         error =""
+        formula = str(request.form['formula'])
+        dopant1 = str(request.form['dopant1'])
+        dopant2 =  str(request.form['dopant2'])
+        dop_con1 = float(request.form['dop_con1'])
+        dop_con2 = float(request.form['dop_con2'])
        
         
     except:
