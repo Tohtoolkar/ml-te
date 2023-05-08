@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 #from flask_uploads import UploadSet, IMAGES, confiure_uploads
 #from flask_wrtf import FlaskForm
 #from flasl_wrf.file import FileField, FileRequired, FileAllowed
@@ -90,6 +90,16 @@ def Doped_mat():
     dopant2 =  str(request.form['dopant2'])
     dop_con1 = float(request.form['dop_con1'])
     dop_con2 = float(request.form['dop_con2'])
+
+    flash('Form submitted successfully')
+    session['formula'] = material
+    session['dopant1'] = dopant1
+    session['dopant2'] = dopant2
+    session['dop_con1'] = dop_con1        
+    session['dop_con2'] = dop_con2      
+    #session['sinter_temp'] = sinter_temp       
+
+
 
     mat_host = {'h1': "", 'con1':"", 'h2':"", 'con2':"" , 'h3':""}
     if(material == "PbTe"):
@@ -216,14 +226,26 @@ def predict():
         pic2 =plot_zt2()
         pic = ""
         error =""
-        formula = str(request.form['formula'])
-        dopant1 = str(request.form['dopant1'])
-        dopant2 =  str(request.form['dopant2'])
-        dop_con1 = float(request.form['dop_con1'])
-        dop_con2 = float(request.form['dop_con2'])
-        sinter_temp = int(request.form['sin_temp'])
-       
-        
+        #formula = str(request.form['formula'])
+        #dopant1 = str(request.form['dopant1'])
+        #dopant2 =  str(request.form['dopant2'])
+        #dop_con1 = float(request.form['dop_con1'])
+        #dop_con2 = float(request.form['dop_con2'])
+        #sinter_temp = int(request.form['sin_temp'])
+
+       # session['formula'] = formula
+       # session['dopant1'] = dopant1
+       # session['dopant2'] = dopant2
+       # session['dop_con1'] = dop_con1        
+       # session['dop_con2'] = dop_con2      
+      #  session['sinter_temp'] = sinter_temp       
+
+        formula = session.get('formula')
+        dopant1 = session.get('dopant1')
+        dopant2 = session.get('dopant2')
+        dop_con1 = session.get('dop_con1')  
+        dop_con2 = session.get('dop_con2')
+        #sinter_temp = session.get('dopasinter_tempnt1')  
     except:
         error = "You put the wrong fomula form, try again!"
         pic2 = ""
