@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session,jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 #from flask_uploads import UploadSet, IMAGES, confiure_uploads
 #from flask_wrtf import FlaskForm
 #from flasl_wrf.file import FileField, FileRequired, FileAllowed
@@ -204,7 +204,11 @@ def getdata(predmat):
 
 @app.route('/predict', methods=['POST',"GET"])
 def predict():
-
+    #formula = request.POST.get('formula')
+    #dopant1 = request.POST.get('dopant1')
+    #dopant2 = request.POST.get('dopant2')
+    #dop_con1 = request.POST.get('dop_con1')
+    #dop_con2 = request.POST.get('dop_con2')
 
     #formula = str(request.form['formula'])
     #sin_temp = int(request.form['sin_temp'])
@@ -237,7 +241,8 @@ def predict():
     #output = prediction[0]
     #Flask_Logo = os.path.join(app.config['UPLOAD_FOLDER'], f'prediction_{formula}_{sin_temp}.jpg')
     
-    return jsonify(
+    return render_template(
+        'index.html', 
         pic=pic, 
         error=error, 
         image2=pic2, 

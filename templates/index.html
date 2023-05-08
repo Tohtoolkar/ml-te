@@ -53,7 +53,7 @@ button {
 		<b>Select based thermoelectric material:</b>
 	
 	
-			<form  method="post" class="form-anticlear"  >
+			<form action="{{url_for('predict')}}" method="post" class="form-anticlear"  >
 				<p>
 					<ul style="color:red;">
 						<input type="radio" id="type1" name="formula" value="PbTe" onclick="myFunction1()">
@@ -115,7 +115,7 @@ button {
 				<input type="text" name="sin_temp" placeholder="600" required="required" >
 				<br>
 				<br>
-				<button type="button" id="submit" class="btn btn-primary btn-block btn-large" >Predict ZT!</button>
+				<button type="submit" class="btn btn-primary btn-block btn-large" >Predict ZT!</button>
 	
 				<p id="predict_mat_con" style="color:white;" ></p>
 				<p id="mat_prediction" style="color:white;" ></p>
@@ -134,26 +134,7 @@ button {
 
 	   
 	</div>
-<script>
-		$(document).ready(function() {
-		  $("#submit").click(function() {
-			$.ajax({
-			  url: '/predict',
-			  type: 'POST',
-			  data: {
-				name: $("#name").val(),
-				email: $("#email").val()
-			  },
-			  success: function(response) {
-				$("#result").text(response);
-			  },
-			  error: function(error) {
-				console.log(error);
-			  }
-			});
-		  });
-		});
-</script>
+	
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <script>
