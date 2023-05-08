@@ -221,6 +221,7 @@ def predict():
         dopant2 =  str(request.form['dopant2'])
         dop_con1 = float(request.form['dop_con1'])
         dop_con2 = float(request.form['dop_con2'])
+        sinter_temp = int(request.form['sin_temp'])
        
         
     except:
@@ -250,7 +251,8 @@ def predict():
         dopant1=dopant1,
         dopant2=dopant2,
         dop_con1=dop_con1,
-        dop_con2=dop_con2
+        dop_con2=dop_con2,
+        sinter_temp=sinter_temp
 
 
         )
