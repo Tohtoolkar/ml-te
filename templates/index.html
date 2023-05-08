@@ -53,7 +53,7 @@ button {
 		<b>Select based thermoelectric material:</b>
 	
 	
-			<form action="/predict" method="post" class="form-anticlear"  >
+			<form action="/predict" method="post" class="form-anticlear" onsubmit="event.preventDefault();" >
 				<p>
 					<ul style="color:red;">
 						<input type="radio" id="type1" name="formula" value="PbTe" onclick="myFunction1()">
