@@ -50,10 +50,10 @@ button {
 		<h4>This model was implemented with data extracted from published articles, totally up to 1500 datasets</h4>
 		<h5>You can use this machine learning model to predict ZT value of doped thermoelectric materials from 500 to 700 <sup>๐</sup>C</h5>
 		<br>
-		<b>select based thermoelectric material:</b>
+		<b>Select based thermoelectric material:</b>
 	
 	
-			<form action="{{url_for('predict')}}" method="post" class="form-anticlear"  >
+			<form action="/predict" method="post" class="form-anticlear"  >
 				<p>
 					<ul style="color:red;">
 						<input type="radio" id="type1" name="formula" value="PbTe" onclick="myFunction1()">
@@ -73,7 +73,7 @@ button {
 					</ul>
 				<b style="color:grey;">Here is your based material.</b>
 				<p id="demo"></p>
-				<b   style="color:grey;" >set the dopants and concentrations at the particular substitutional site</b>
+				<b   style="color:grey;" >Set the dopants and concentrations at the particular substitutional site</b>
 				<br>
 				<p id="host1"></p>
 				<select name="dopant1" id="dopant1" onChange="getMaterial()" >
@@ -105,7 +105,7 @@ button {
    				<b   style="color:red;" >{{error}}</b>
 				<br>
 			
-    			<b   style="color:grey;" >set sintering temperature in <sup>๐</sup>C such as 600, 800, 1,000</b>
+    			<b   style="color:grey;" >Set sintering temperature in <sup>๐</sup>C such as 600, 800, 1,000</b>
 				<br>
 				<input type="text" name="sin_temp" placeholder="600" required="required" >
 				<br>
@@ -230,7 +230,7 @@ button {
 			 dop_con2 = document.getElementById("doped_contents2").value
 
 			 change_droplist_dopcon(doped_contents,dop_con1, dop_con2)
-			 event.preventDefault()
+			
 			mat_prediction = mat1 + con1.toFixed(2)+dopant1+ dop_con1 + mat2 +con2.toFixed(2)+dopant2+ dop_con2
 		} else if (document.getElementById("host1").innerHTML == "Co"){
 			mat1 = "Co"
@@ -244,7 +244,6 @@ button {
 			dop_con2 = document.getElementById("doped_contents2").value
 
 			change_droplist_dopcon(doped_contents_for_skutt,dop_con1, dop_con2)
-			event.preventDefault()
 		    mat_prediction = mat1 + con1.toFixed(2)+dopant1+ dop_con1 + mat2 +con2.toFixed(2)+dopant2+ dop_con2
 		} else if (document.getElementById("host1").innerHTML == "Mg"){
 			mat1 = "Mg"
@@ -258,7 +257,6 @@ button {
 			dop_con2 = document.getElementById("doped_contents2").value
 		   
 			change_droplist_dopcon(doped_contents,dop_con1, dop_con2)
-			event.preventDefault()
 		    mat_prediction = mat1 + con1.toFixed(2)+dopant1+ dop_con1 + mat2 +con2.toFixed(2)+dopant2+ dop_con2
 		}else if (document.getElementById("host1").innerHTML == "Bi"){
 			mat1 = "Bi"
@@ -275,7 +273,6 @@ button {
 			mat4 = "O"
 		   
 			change_droplist_dopcon(doped_contents,dop_con1, dop_con2)
-			event.preventDefault()
 		    mat_prediction = mat1 + con1.toFixed(2)+dopant1+ dop_con1 + mat2 +con2.toFixed(2)+dopant2+ dop_con2
 		}else if (document.getElementById("host1").innerHTML == "Cu"){
 			mat1 = "Cu"
@@ -289,11 +286,10 @@ button {
 			dop_con2 = document.getElementById("doped_contents2").value
 		   
 			change_droplist_dopcon(doped_contents,dop_con1, dop_con2)
-			event.preventDefault()
 		    mat_prediction = mat1 + con1.toFixed(2) + dopant1+ dop_con1 + mat2 + con2.toFixed(2) + dopant2+ dop_con2
 		}
 
-		event.preventDefault()
+
 		document.getElementById("mat_prediction").innerHTML = mat_prediction
 		document.getElementById("mat1").innerHTML =mat1
 		document.getElementById("con1").innerHTML =con1
@@ -307,13 +303,11 @@ button {
 
 		document.getElementById("mat3").innerHTML =mat3
 		document.getElementById("mat4").innerHTML =mat4
-		
+
         if(dop_con1 == 0.0){
-			event.preventDefault()
             document.getElementById("dopant_mat1").innerHTML =null
             document.getElementById("dop_con1").innerHTML =null
         }else{
-			event.preventDefault()
             document.getElementById("dop_con1").innerHTML =dop_con1
             document.getElementById("dopant_mat1").innerHTML =dopant1
         }
@@ -321,15 +315,13 @@ button {
 
 
         if(dop_con2 == 0.0){
-			event.preventDefault()
             document.getElementById("dopant_mat2").innerHTML = null
             document.getElementById("dop_con2").innerHTML =null
         }else{
-			event.preventDefault()
             document.getElementById("dopant_mat2").innerHTML =dopant2
             document.getElementById("dop_con2").innerHTML =dop_con2
         } 
-		event.preventDefault()
+
 	}
 
 
@@ -341,7 +333,7 @@ button {
 		document.getElementById("predict_mat_con").innerHTML = "PbTe"
 		
 		getMaterial()
-		event.preventDefault()
+		
 	  }
 	  function myFunction2() {
 		var x2 = document.getElementById("type2").value;
@@ -351,7 +343,6 @@ button {
 		document.getElementById("predict_mat_con").innerHTML = "Co14Sb12"
 		
 		getMaterial()
-		event.preventDefault()
 	  }
 	  function myFunction3() {
 		var x3 = document.getElementById("type3").value;
@@ -361,7 +352,6 @@ button {
 		document.getElementById("predict_mat_con").innerHTML = "Mg2Si"
 				
 		getMaterial()
-		event.preventDefault()
 	  }
 	  function myFunction4() {
 		var x4 = document.getElementById("type4").value;
@@ -371,7 +361,6 @@ button {
 		document.getElementById("predict_mat_con").innerHTML = "BiCuSeO"
 				
 		getMaterial()
-		event.preventDefault()
 	  }
 	  function myFunction5() {
 		var x5 = document.getElementById("type5").value;
@@ -381,7 +370,6 @@ button {
 		document.getElementById("predict_mat_con").innerHTML = "Cu2Se"
 				
 		getMaterial()
-		event.preventDefault()
 	  }
 
 
