@@ -71,9 +71,7 @@ button {
 						<input type="radio" id="type5" name="formula" value="Cu2Se" onclick="myFunction5()" >
 						<label for="type5"> Cu<sub>2</sub>Se</label><br><br>
 					</ul>
-					<script type="text/javascript">
-						document.getElementById('formula').value = "<?php echo $_GET['formula'];?>";
-					</script>
+
 				<b style="color:grey;">Here is your based material.</b>
 				<p id="demo"></p>
 				<b   style="color:grey;" >Set the dopants and concentrations at the particular substitutional site</b>
@@ -82,15 +80,11 @@ button {
 				<select name="dopant1" id="dopant1" onChange="getMaterial()" >
 					<option>Ac</option>
 				</select>
-				<script type="text/javascript">
-					document.getElementById('dopant1').value = "<?php echo $_GET['dopant1'];?>";
-				</script>
+
 				<select name="dop_con1" id="doped_contents1" onChange="getMaterial()"  required="required" >
 					<option>0.0</option>
 				</select>
-				<script type="text/javascript">
-					document.getElementById('dop_con1').value = "<?php echo $_GET['dop_con1'];?>";
-				</script>
+
 				<br>
 				<br>
 
@@ -98,15 +92,11 @@ button {
 				<select name="dopant2" id="dopant2"  onChange="getMaterial()">
 					<option >Ac</option>
 				</select>
-				<script type="text/javascript">
-					document.getElementById('dopant2').value = "<?php echo $_GET['dopant2'];?>";
-				</script>
+
 				<select name="dop_con2" id="doped_contents2"  onChange="getMaterial()"   required="required">
 					<option>0.0</option>
 				</select>
-				<script type="text/javascript">
-					document.getElementById('dop_con2').value = "<?php echo $_GET['dop_con2'];?>";
-				</script>
+
 				<br>
 				<br>
 				<b style="color:grey;">Here is your doped material</b>
