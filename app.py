@@ -204,11 +204,11 @@ def getdata(predmat):
 
 @app.route('/predict', methods=['POST',"GET"])
 def predict(request):
-    formula = request.GET.get('formula')
-    dopant1 = request.GET.get('dopant1')
-    dopant2 = request.GET.get('dopant2')
-    dop_con1 = request.GET.get('dop_con1')
-    dop_con2 = request.GET.get('dop_con2')
+    formula = request.POST.get('formula')
+    dopant1 = request.POST.get('dopant1')
+    dopant2 = request.POST.get('dopant2')
+    dop_con1 = request.POST.get('dop_con1')
+    dop_con2 = request.POST.get('dop_con2')
 
     #formula = str(request.form['formula'])
     #sin_temp = int(request.form['sin_temp'])
@@ -218,8 +218,6 @@ def predict(request):
    # print("testtt", getdata(""))
    # print("------Check", getdata()
    
-  
-
     try:
        
         pic2 =plot_zt2()
