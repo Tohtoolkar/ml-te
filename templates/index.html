@@ -53,7 +53,7 @@ button {
 		<b>Select based thermoelectric material:</b>
 	
 	
-			<form action="/predict" method="post" class="form-anticlear"  >
+			<form action="/predict" method="get|post" class="form-anticlear"  >
 				<p>
 					<ul style="color:red;">
 						<input type="radio" id="type1" name="formula" value="PbTe" onclick="myFunction1()">
@@ -203,7 +203,6 @@ button {
 
 //เลือก material ที่ต้องการ
 	function getMaterial(e) {
-		e.preventDefault()
 		
 
 		var mat1="";
@@ -326,8 +325,7 @@ button {
 	}
 
 
-	  function myFunction1(e) {
-		e.preventDefault()
+	  function myFunction1() {
 		var x1 = document.getElementById("type1").value;
 		document.getElementById("demo").innerHTML = x1
 		document.getElementById("host1").innerHTML = "Pb"
@@ -337,8 +335,7 @@ button {
 		getMaterial()
 		
 	  }
-	  function myFunction2(e) {
-		e.preventDefault()
+	  function myFunction2() {
 		var x2 = document.getElementById("type2").value;
 		document.getElementById("demo").innerHTML = x2
 		document.getElementById("host1").innerHTML = "Co"
@@ -347,8 +344,7 @@ button {
 		
 		getMaterial()
 	  }
-	  function myFunction3(e) {
-		e.preventDefault()
+	  function myFunction3() {
 		var x3 = document.getElementById("type3").value;
 		document.getElementById("demo").innerHTML = x3
 		document.getElementById("host1").innerHTML = "Mg"
@@ -357,8 +353,7 @@ button {
 				
 		getMaterial()
 	  }
-	  function myFunction4(e) {
-		e.preventDefault()
+	  function myFunction4() {
 		var x4 = document.getElementById("type4").value;
 		document.getElementById("demo").innerHTML = x4
 		document.getElementById("host1").innerHTML = "Bi"
@@ -367,8 +362,7 @@ button {
 				
 		getMaterial()
 	  }
-	  function myFunction5(e) {
-		e.preventDefault()
+	  function myFunction5() {
 		var x5 = document.getElementById("type5").value;
 		document.getElementById("demo").innerHTML = x5
 		document.getElementById("host1").innerHTML = "Cu"

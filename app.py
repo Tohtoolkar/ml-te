@@ -203,7 +203,13 @@ def getdata(predmat):
     return redirect(url_for('predict',keys=predmat))
 
 @app.route('/predict', methods=['POST',"GET"])
-def predict():
+def predict(request):
+    formula = request.GET.get('formula')
+    dopant1 = request.GET.get('dopant1')
+    dopant2 = request.GET.get('dopant2')
+    dop_con1 = request.GET.get('dop_con1')
+    dop_con2 = request.GET.get('dop_con2')
+
     #formula = str(request.form['formula'])
     #sin_temp = int(request.form['sin_temp'])
     #measure_temp = int(request.form['measure_temp'])
@@ -243,6 +249,12 @@ def predict():
         pic=pic, 
         error=error, 
         image2=pic2, 
+        formula=formula,
+        dopant1=dopant1,
+        dopant2=dopant2,
+        dop_con1=dop_con1,
+        dop_con2=dop_con2
+
      
 
 
