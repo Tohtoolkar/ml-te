@@ -91,12 +91,13 @@ def Doped_mat():
     dop_con1 = float(request.form['dop_con1'])
     dop_con2 = float(request.form['dop_con2'])
 
-    flash('Form submitted successfully')
+ 
     session['formula'] = material
     session['dopant1'] = dopant1
     session['dopant2'] = dopant2
     session['dop_con1'] = dop_con1        
-    session['dop_con2'] = dop_con2      
+    session['dop_con2'] = dop_con2     
+    flash('Form submitted successfully') 
     #session['sinter_temp'] = sinter_temp       
 
 
@@ -219,6 +220,26 @@ def predict():
    # data= json.loads(materialPred)
    # print("testtt", getdata(""))
    # print("------Check", getdata()
+    formula = str(request.form['formula'])
+    dopant1 = str(request.form['dopant1'])
+    dopant2 =  str(request.form['dopant2'])
+    dop_con1 = float(request.form['dop_con1'])
+    dop_con2 = float(request.form['dop_con2'])
+    sinter_temp = int(request.form['sin_temp'])
+
+    session['formula'] = formula
+    session['dopant1'] = dopant1
+    session['dopant2'] = dopant2
+    session['dop_con1'] = dop_con1        
+    session['dop_con2'] = dop_con2      
+    session['sinter_temp'] = sinter_temp       
+
+    formula = session.get('formula')
+    dopant1 = session.get('dopant1')
+    dopant2 = session.get('dopant2')
+    dop_con1 = session.get('dop_con1')  
+    dop_con2 = session.get('dop_con2')
+    sinter_temp = session.get('dopasinter_tempnt1')  
   
 
     try:
@@ -226,26 +247,7 @@ def predict():
         pic2 =plot_zt2()
         pic = ""
         error =""
-        #formula = str(request.form['formula'])
-        #dopant1 = str(request.form['dopant1'])
-        #dopant2 =  str(request.form['dopant2'])
-        #dop_con1 = float(request.form['dop_con1'])
-        #dop_con2 = float(request.form['dop_con2'])
-        #sinter_temp = int(request.form['sin_temp'])
 
-       # session['formula'] = formula
-       # session['dopant1'] = dopant1
-       # session['dopant2'] = dopant2
-       # session['dop_con1'] = dop_con1        
-       # session['dop_con2'] = dop_con2      
-      #  session['sinter_temp'] = sinter_temp       
-
-        formula = session.get('formula')
-        dopant1 = session.get('dopant1')
-        dopant2 = session.get('dopant2')
-        dop_con1 = session.get('dop_con1')  
-        dop_con2 = session.get('dop_con2')
-        #sinter_temp = session.get('dopasinter_tempnt1')  
     except:
         error = "You put the wrong fomula form, try again!"
         pic2 = ""
