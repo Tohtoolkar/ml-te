@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash, session,jsonify
 #from flask_uploads import UploadSet, IMAGES, confiure_uploads
 #from flask_wrtf import FlaskForm
 #from flasl_wrf.file import FileField, FileRequired, FileAllowed
@@ -237,8 +237,7 @@ def predict():
     #output = prediction[0]
     #Flask_Logo = os.path.join(app.config['UPLOAD_FOLDER'], f'prediction_{formula}_{sin_temp}.jpg')
     
-    return render_template(
-        'index.html', 
+    return jsonify(
         pic=pic, 
         error=error, 
         image2=pic2, 
