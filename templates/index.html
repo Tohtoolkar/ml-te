@@ -71,7 +71,9 @@ button {
 						<input type="radio" id="type5" name="formula" value="Cu2Se" onclick="myFunction5()" >
 						<label for="type5"> Cu<sub>2</sub>Se</label><br><br>
 					</ul>
-	
+					<script type="text/javascript">
+						document.getElementById('formula').value = "<?php echo $_GET['formula'];?>";
+					</script>
 				<b style="color:grey;">Here is your based material.</b>
 				<p id="demo"></p>
 				<b   style="color:grey;" >Set the dopants and concentrations at the particular substitutional site</b>
@@ -80,11 +82,15 @@ button {
 				<select name="dopant1" id="dopant1" onChange="getMaterial()" >
 					<option>Ac</option>
 				</select>
-
+				<script type="text/javascript">
+					document.getElementById('dopant1').value = "<?php echo $_GET['dopant1'];?>";
+				</script>
 				<select name="dop_con1" id="doped_contents1" onChange="getMaterial()"  required="required" >
 					<option>0.0</option>
 				</select>
-		
+				<script type="text/javascript">
+					document.getElementById('dop_con1').value = "<?php echo $_GET['dop_con1'];?>";
+				</script>
 				<br>
 				<br>
 
@@ -92,11 +98,15 @@ button {
 				<select name="dopant2" id="dopant2"  onChange="getMaterial()">
 					<option >Ac</option>
 				</select>
-
+				<script type="text/javascript">
+					document.getElementById('dopant2').value = "<?php echo $_GET['dopant2'];?>";
+				</script>
 				<select name="dop_con2" id="doped_contents2"  onChange="getMaterial()"   required="required">
 					<option>0.0</option>
 				</select>
-
+				<script type="text/javascript">
+					document.getElementById('dop_con2').value = "<?php echo $_GET['dop_con2'];?>";
+				</script>
 				<br>
 				<br>
 				<b style="color:grey;">Here is your doped material</b>
@@ -115,7 +125,7 @@ button {
 				<input type="text" name="sin_temp" placeholder="600" required="required" >
 				<br>
 				<br>
-				<button type="submit" class="btn btn-primary btn-block btn-large" onclick="getMaterial()" >Predict ZT!</button>
+				<button type="submit" class="btn btn-primary btn-block btn-large" >Predict ZT!</button>
 	
 				<p id="predict_mat_con" style="color:white;" ></p>
 				<p id="mat_prediction" style="color:white;" ></p>
@@ -134,7 +144,6 @@ button {
 
 	   
 	</div>
-
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <script>
 	var chemicalElement =['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na',
