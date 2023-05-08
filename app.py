@@ -234,13 +234,17 @@ def predict():
     #prediction = model.predict(x)
     #output = prediction[0]
     #Flask_Logo = os.path.join(app.config['UPLOAD_FOLDER'], f'prediction_{formula}_{sin_temp}.jpg')
-
-    return render_template(
-        'index.html', 
-        pic=pic, 
-        error=error, 
-        image2=pic2,    
+    return redirect(url_for('index'),   
+            pic=pic, 
+            error=error, 
+            image2=pic2,    
         )
+   # return render_template(
+    #    'index.html', 
+     #   pic=pic, 
+      #  error=error, 
+       # image2=pic2,    
+        #)
 
 
 if __name__ == "__main__":
