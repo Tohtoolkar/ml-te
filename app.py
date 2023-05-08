@@ -204,11 +204,11 @@ def getdata(predmat):
 
 @app.route('/predict', methods=['POST',"GET"])
 def predict(request):
-    formula = request.POST.get('formula')
-    dopant1 = request.POST.get('dopant1')
-    dopant2 = request.POST.get('dopant2')
-    dop_con1 = request.POST.get('dop_con1')
-    dop_con2 = request.POST.get('dop_con2')
+    #formula = request.POST.get('formula')
+    #dopant1 = request.POST.get('dopant1')
+    #dopant2 = request.POST.get('dopant2')
+    #dop_con1 = request.POST.get('dop_con1')
+    #dop_con2 = request.POST.get('dop_con2')
 
     #formula = str(request.form['formula'])
     #sin_temp = int(request.form['sin_temp'])
@@ -247,11 +247,7 @@ def predict(request):
         pic=pic, 
         error=error, 
         image2=pic2, 
-        formula=formula,
-        dopant1=dopant1,
-        dopant2=dopant2,
-        dop_con1=dop_con1,
-        dop_con2=dop_con2
+
 
      
 
