@@ -209,6 +209,11 @@ def predict():
    # data= json.loads(materialPred)
    # print("testtt", getdata(""))
    # print("------Check", getdata()
+    formula = str(request.form['formula'])
+    dopant1 = str(request.form['dopant1'])
+    dopant2 =  str(request.form['dopant2'])
+    dop_con1 = float(request.form['dop_con1'])
+    dop_con2 = float(request.form['dop_con2'])
 
     try:
        
@@ -234,17 +239,20 @@ def predict():
     #prediction = model.predict(x)
     #output = prediction[0]
     #Flask_Logo = os.path.join(app.config['UPLOAD_FOLDER'], f'prediction_{formula}_{sin_temp}.jpg')
-    return redirect(url_for('index'),   
-            pic=pic, 
-            error=error, 
-            image2=pic2,    
+    
+    return render_template(
+        'index.html', 
+        pic=pic, 
+        error=error, 
+        image2=pic2, 
+        formula=formula,
+        dopant1=dopant1,
+        dopant2=dopant2,
+        dop_con1=dop_con1,
+        dop_con2=dop_con2
+
+
         )
-   # return render_template(
-    #    'index.html', 
-     #   pic=pic, 
-      #  error=error, 
-       # image2=pic2,    
-        #)
 
 
 if __name__ == "__main__":
